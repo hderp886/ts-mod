@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Providers;
+namespace Seat\Ts3;
 
 use Illuminate\Support\ServiceProvider;
 
@@ -13,7 +13,8 @@ class Ts3ServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $this->addRoutes();
+        $this->addViews();
     }
 
     /**
@@ -24,5 +25,16 @@ class Ts3ServiceProvider extends ServiceProvider
     public function register()
     {
         //
+    }
+        public function addRoutes()
+    {
+        if (!$this->app->routesAreCached()) {
+            include __DIR__ . '/Http/routes.php';
+        }
+    }
+    
+    public function addViews()
+    {
+        // $this->loadViewsFrom(__DIR__ . '/resources/views', 'teamspeak');
     }
 }

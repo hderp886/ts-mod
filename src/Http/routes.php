@@ -6,10 +6,9 @@ Route::group([
 ], function(){
         
     Route::get('/', [
-        'as' => 'ts3.home',
         'uses' => 'Ts3Controller@getControls'
     ]);
     
 });
 
-?>
+?>  
