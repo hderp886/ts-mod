@@ -1,0 +1,21 @@
+{
+    "name": "hderp886/ts-mod",
+    "description": "This plugin allows user registration on a TS3 server",
+    "type": "seat-plugin",
+    "autoload":{
+        "psr-4":{
+            "Seat\\Ts3\\": "src/"
+        }
+    },
+    "require": {
+        
+    },
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Your momma",
+            "email": "hderp886@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev"
+}
