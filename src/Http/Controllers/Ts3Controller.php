@@ -3,6 +3,8 @@
 
 namespace Seat\Ts3\Http\Controllers;
 
+use App\Http\Controllers\Controller;
+
 class Ts3Controller extends Controller
 {
     public function getControls()
