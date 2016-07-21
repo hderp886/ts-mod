@@ -36,6 +36,11 @@ class Ts3ServiceProvider extends ServiceProvider
     
     public function addViews()
     {
-        // $this->loadViewsFrom(__DIR__ . '/resources/views', 'teamspeak');
+        $this->loadViewsFrom(__DIR__ . '/resources/views', 'teamspeak');
+    }
+    
+    public function addTranslations()
+    {
+        $this->loadTranslationsFrom(__DIR__ . '/lang', 'teamspeak');
     }
 }
