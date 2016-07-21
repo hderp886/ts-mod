@@ -21,15 +21,6 @@ Route::group([
         'uses' => 'Ts3Controller@getSettings'
     ]);
     
-    /**
-     * Post admin settings
-     
-    Route::post('/admin/', function (Request $request) {
-        'as' => 'ts3.admin.post',
-        'uses' => 'Ts3Controller@postSettings'
-    });
-    */
-    
     
 });
 
