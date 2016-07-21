@@ -16,6 +16,7 @@ class Ts3ServiceProvider extends ServiceProvider
         $this->addRoutes();
         $this->addViews();
         $this->addTranslations();
+        $this->addPublications();
     }
 
     /**
@@ -42,5 +43,12 @@ class Ts3ServiceProvider extends ServiceProvider
     public function addTranslations()
     {
         $this->loadTranslationsFrom(__DIR__ . '/lang', 'teamspeak');
+    }
+    
+    public function addPublications()
+    {
+        $this->publishes([
+            __DIR__ . '/database/migrations/' => database_path('migrations')
+        ]);
     }
 }
