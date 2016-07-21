@@ -28,7 +28,8 @@ class Ts3ServiceProvider extends ServiceProvider
     {
         //
     }
-        public function addRoutes()
+    
+    public function addRoutes()
     {
         if (!$this->app->routesAreCached()) {
             include __DIR__ . '/Http/routes.php';
