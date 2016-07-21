@@ -15,6 +15,7 @@ class Ts3ServiceProvider extends ServiceProvider
     {
         $this->addRoutes();
         $this->addViews();
+        $this->addTranslations();
     }
 
     /**

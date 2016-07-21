@@ -5,10 +5,29 @@ Route::group([
     'prefix' => 'teamspeak'
 ], function(){
         
+    /**
+    * View user page
+    */
     Route::get('/', [
         'as' => 'ts3.home',
         'uses' => 'Ts3Controller@getControls'
     ]);
+    
+    /**
+    * View admin settings
+    */
+    Route::get('/admin/', [
+        'as' => 'ts3.admin',
+        'uses' => 'Ts3Controller@getSettings'
+    ]);
+    
+    /**
+     * Post admin settings
+     */
+    Route::post('/admin/', function (Request $request) {
+        'as' => 'ts3.admin.post',
+        'uses' => 'Ts3Controller@postSettings'
+    });
     
 });
 

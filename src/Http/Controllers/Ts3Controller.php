@@ -13,4 +13,9 @@ class Ts3Controller extends Controller
         return 'Hello World';
     }
     
+    public function getSettings()
+    {
+        return view('teamspeaksettings');
+    }
+    
 }
