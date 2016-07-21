@@ -15,7 +15,7 @@ class Ts3Controller extends Controller
     
     public function getSettings()
     {
-        return view('teamspeaksettings');
+        return view('teamspeak::teamspeaksettings');
     }
     
 }
