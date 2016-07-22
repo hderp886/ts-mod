@@ -1,7 +1,7 @@
 @extends('web::layouts.grids.3-9')
 
-@section('title', trans('teamspeak::seat.management'))
-@section('page_header', trans('teamspeak::seat.management'))
+@section('title', 'Settings')
+@section('page_header', 'Settings')
 
 @section('left')
 
