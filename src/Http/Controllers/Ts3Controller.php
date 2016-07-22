@@ -19,7 +19,9 @@ class Ts3Controller extends Controller
     
     public function getSettings()
     {
-        return view('teamspeak::teamspeaksettings');
+        $tssettings = Teamspeaksetting::first();
+        
+        return view('teamspeak::teamspeaksettings', compact('tssettings'));
     }
     
 }
