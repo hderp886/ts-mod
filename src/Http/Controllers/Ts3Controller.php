@@ -5,9 +5,9 @@ namespace Seat\Ts3\Http\Controllers;
 
 
 use App\Ts3;
-use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Seat\Ts3\Models\TeamspeakSetting;
 
 class Ts3Controller extends Controller
 {
@@ -19,7 +19,7 @@ class Ts3Controller extends Controller
     
     public function getSettings()
     {
-        $tssettings = Teamspeaksetting::first();
+        $tssettings = TeamspeakSetting::first();
         
         return view('teamspeak::teamspeaksettings', compact('tssettings'));
     }
