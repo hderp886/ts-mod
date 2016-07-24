@@ -1,4 +1,4 @@
-<? php
+<?php
     
     return [
     'management' => 'Teamspeak Access Management',

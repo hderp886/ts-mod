@@ -5,10 +5,7 @@
     "autoload":{
         "psr-4":{
             "Seat\\Ts3\\": "src/"
-        },
-        "classmap": [
-         "database/seeds/TeamspeakAdminSeeder.php"
-    ]
+        }
     },
     "require": {
         
