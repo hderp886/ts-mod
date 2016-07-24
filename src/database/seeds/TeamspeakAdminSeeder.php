@@ -1,7 +1,5 @@
 <?php
 
-namespace Seat\Ts3\Database\Seeds;
-
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
