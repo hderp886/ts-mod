@@ -6,7 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class TeamspeakSetting extends Model
 {
-        protected $fillable = [
+    protected $table = 'teamspeak_settings';
+    
+    protected $fillable = [
         'id',
         'admin',
         'tshost',
