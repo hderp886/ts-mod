@@ -8,8 +8,8 @@ use App\Ts3;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
-
 use Seat\Ts3\Models\TeamspeakSetting;
+use Seat\Ts3\Helpers;
 
 class Ts3Controller extends Controller
 {
@@ -44,6 +44,21 @@ class Ts3Controller extends Controller
         $tssettings->save();
         return redirect()->back()
             ->with('success', 'Teamspeak settings updated');
+        
+    }
+    
+    public function testSettings()
+    {
+        
+        try {
+            $tsserver = new TeamSpeak3Adapater;
+            return redirect()->back()
+            ->with('success', 'Teamspeak Server online!');
+        } catch (TeamSpeak3_Exception $e) {
+            return redirect()->back()
+            ->with('failure', 'No Teamspeak connection made.');
+        }
+        
         
     }
     

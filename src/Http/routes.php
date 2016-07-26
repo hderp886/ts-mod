@@ -30,6 +30,14 @@ Route::group([
         'uses' => 'Ts3Controller@postSettings'
     ]);
     
+    /**
+    * Test Connection
+    */
+    Route::post('/test/', [
+        'as' => 'ts3.admin.test',
+        'uses' => 'Ts3Controller@testSettings'
+    ]);
+    
     
 });
 
