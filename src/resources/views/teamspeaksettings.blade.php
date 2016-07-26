@@ -29,7 +29,7 @@
             </div>  
             
             <div class="form-group">
-                <label for="tshost" class="col-sm-4 control-label">Admin User ID</label>
+                <label for="tshost" class="col-sm-4 control-label">Teamspeak Host</label>
 
                 <div class="col-sm-7">
                     @if (!count($tssettings))
@@ -57,9 +57,9 @@
 
                 <div class="col-sm-7">
                     @if (!count($tssettings))
-                    <input type="text" name="tspass" id="tspass" class="form-control">
+                    <input type="password" name="tspass" id="tspass" class="form-control">
                     @else
-                    <input type="text" name="tspass" id="tspass" class="form-control" value="{{ $tssettings->tspass }}">
+                    <input type="password" name="tspass" id="tspass" class="form-control" value="{{ $tssettings->tspass }}">
                     @endif
                 </div>
             </div>  
@@ -77,7 +77,7 @@
             </div>  
             
             <div class="form-group">
-                <label for="tscport" class="col-sm-4 control-label">Teamspeak Server C Port</label>
+                <label for="tscport" class="col-sm-4 control-label">Teamspeak Server Client Port</label>
 
                 <div class="col-sm-7">
                     @if (!count($tssettings))

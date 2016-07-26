@@ -8,7 +8,7 @@
         }
     },
     "require": {
-        
+        "fkubis/teamspeak-php-framework": "dev-master"
     },
     "license": "GPL-2.0",
     "authors": [

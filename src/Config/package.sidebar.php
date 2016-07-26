@@ -4,7 +4,7 @@
 return [
     'teamspeak' => [
         'name'          => 'Teamspeak',
-        'icon'          => 'fa-slack',
+        'icon'          => 'fa-microphone',
         'route_segment' => 'ts3',
         'entries' => [
             [
