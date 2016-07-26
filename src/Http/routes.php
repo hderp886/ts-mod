@@ -21,6 +21,14 @@ Route::group([
         'uses' => 'Ts3Controller@getSettings'
     ]);
     
+    /**
+    * Update admin settings
+    */
+    Route::post('/admin/', [
+        'as' => 'ts3.admin.post',
+        'uses' => 'Ts3Controller@postSettings'
+    ]);
+    
     
 });
 

@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TeamspeakSetting extends Model
 {
-    protected $table = 'teamspeak_settings';
+    protected $table = 'teamspeaksettings';
     
     protected $fillable = [
         'id',

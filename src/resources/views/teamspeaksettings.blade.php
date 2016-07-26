@@ -1,4 +1,4 @@
-@extends('web::layouts.grids.3-9')
+@extends('web::layouts.grids.6-6')
 
 @section('title', 'Settings')
 @section('page_header', 'Settings')
@@ -12,20 +12,71 @@
     <div class="panel-body">
         
         <!-- Teamspeak Settings -->
-        <form action="{{ url('teamspeak') }}" method="POST" class="form-horizontal">
+        <form action="{{ url('teamspeak/admin') }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
 
-            <!-- Task Name -->
+            <!-- Teamspeak admin -->
             <div class="form-group">
-                <label for="admin-user" class="col-sm-3 control-label">Admin User ID</label>
+                <label for="admin" class="col-sm-3 control-label">Admin User ID</label>
 
                 <div class="col-sm-6">
-                    @if ($tssettings->admin == null)
-                    <input type="text" name="name" id="admin-user" class="form-control">
+                    @if (!count($tssettings))
+                    <input type="text" name="admin" id="admin" class="form-control">
                     @else
-                    <input type="text" name="name" id="admin-user" class="form-control" value="{{ $tssettings->admin }}">
+                    <input type="text" name="admin" id="admin" class="form-control" value="{{ $tssettings->admin }}">
                     @endif
                 </div>
+                
+                <label for="tshost" class="col-sm-3 control-label">Admin User ID</label>
+
+                <div class="col-sm-6">
+                    @if (!count($tssettings))
+                    <input type="text" name="tshost" id="tshost" class="form-control">
+                    @else
+                    <input type="text" name="tshost" id="tshost" class="form-control" value="{{ $tssettings->tshost }}">
+                    @endif
+                </div>
+                
+                <label for="tsuser" class="col-sm-3 control-label">Teamspeak User</label>
+
+                <div class="col-sm-6">
+                    @if (!count($tssettings))
+                    <input type="text" name="tsuser" id="tsuser" class="form-control">
+                    @else
+                    <input type="text" name="tsuser" id="tsuser" class="form-control" value="{{ $tssettings->tsuser }}">
+                    @endif
+                </div>
+                
+                <label for="tspass" class="col-sm-3 control-label">Teamspeak Server Pass</label>
+
+                <div class="col-sm-6">
+                    @if (!count($tssettings))
+                    <input type="text" name="tspass" id="tspass" class="form-control">
+                    @else
+                    <input type="text" name="tspass" id="tspass" class="form-control" value="{{ $tssettings->tspass }}">
+                    @endif
+                </div>
+                
+                <label for="tsport" class="col-sm-3 control-label">Teamspeak Server Port</label>
+
+                <div class="col-sm-6">
+                    @if (!count($tssettings))
+                    <input type="text" name="tsport" id="tsport" class="form-control">
+                    @else
+                    <input type="text" name="tsport" id="tsport" class="form-control" value="{{ $tssettings->tsport }}">
+                    @endif
+                </div>
+                
+                <label for="tscport" class="col-sm-3 control-label">Teamspeak Server C Port</label>
+
+                <div class="col-sm-6">
+                    @if (!count($tssettings))
+                    <input type="text" name="tscport" id="tscport" class="form-control">
+                    @else
+                    <input type="text" name="tscport" id="tscport" class="form-control" value="{{ $tssettings->tscport }}">
+                    @endif
+                </div>
+                
             </div>
 
             <!-- Add Task Button -->
