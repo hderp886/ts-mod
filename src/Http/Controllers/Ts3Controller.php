@@ -30,6 +30,10 @@ class Ts3Controller extends Controller
     {
         $tssettings = TeamspeakSetting::first();
         
+        if (!count($tssettings)) {
+            $tssettings = new TeamspeakSetting;
+        }
+        
         $tssettings->admin = $request->input('admin');
         $tssettings->tshost = $request->input('tshost');
         $tssettings->tsuser = $request->input('tsuser');

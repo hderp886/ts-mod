@@ -26,7 +26,9 @@ class Ts3ServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        // Include this packages menu items
+        $this->mergeConfigFrom(
+            __DIR__ . '/Config/package.settings.menu.php', 'package.settings');
     }
     
     public function addRoutes()
