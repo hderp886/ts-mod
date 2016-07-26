@@ -5,10 +5,14 @@
     "autoload":{
         "psr-4":{
             "Seat\\Ts3\\": "src/"
-        }
+        },
+        "files": [
+    	     "src/Helpers/TeamspeakFramework.php"
+	   ]
+        
     },
     "require": {
-        "fkubis/teamspeak-php-framework": "dev-master"
+        "fkubis/teamspeak-php-framework": "dev-master@dev"
     },
     "license": "GPL-2.0",
     "authors": [

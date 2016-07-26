@@ -30,10 +30,6 @@ class Ts3ServiceProvider extends ServiceProvider
         $this->mergeConfigFrom(
             __DIR__ . '/Config/package.sidebar.php', 'package.sidebar');
         
-        // Include Helpers
-        foreach (glob(app_path().'/Helpers/*.php') as $filename){
-            require_once($filename);
-        }
     }
     
     public function addRoutes()

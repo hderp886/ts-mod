@@ -97,7 +97,7 @@
                     </button>
                 </div>
                 <div class="col-sm-offset-4 col-sm-6">
-                    <button type="button" href="{{ ts3.admin.test }}" class="btn btn-default">
+                    <button type="button" href="/teamspeak/test" class="btn btn-default">
                         <i class="fa fa-plus"></i> Test Connection
                     </button>
                 </div>
