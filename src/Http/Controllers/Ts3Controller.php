@@ -50,14 +50,16 @@ class Ts3Controller extends Controller
     public function testSettings()
     {
         
-        try {
-            $tsserver = new TeamSpeak3Adapater;
-            return redirect()->back()
-            ->with('success', 'Teamspeak Server online!');
-        } catch (TeamSpeak3_Exception $e) {
-            return redirect()->back()
-            ->with('failure', 'No Teamspeak connection made.');
-        }
+        //try {
+        //    $tsserver = new TeamSpeak3Adapater;
+        //    return redirect()->back()
+        //    ->with('success', 'Teamspeak Server online!');
+        //} catch (TeamSpeak3_Exception $e) {
+        //    return redirect()->back()
+        //    ->with('failure', 'No Teamspeak connection made.');
+        //}
+        
+        return 'Test page';
         
         
     }

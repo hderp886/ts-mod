@@ -2,7 +2,6 @@
 
 Route::group([
     'namespace' => 'Seat\Ts3\Http\Controllers',
-    'middleware' => 'bouncer:superuser',
     'prefix' => 'teamspeak'
 ], function(){
         
