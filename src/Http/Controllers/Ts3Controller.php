@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Seat\Ts3\Models\TeamspeakSetting;
 use Seat\Ts3\Helpers;
+use Seat\Ts3\Exceptions
 
 class Ts3Controller extends Controller
 {
@@ -51,12 +52,12 @@ class Ts3Controller extends Controller
     {
         
         try {
-            $tsserver = new TeamSpeak3Adapater;
+            $tsserver = new \Seat\Ts3\Helpers\TeamSpeak3Adapater;
             return redirect()->back()
             ->with('success', 'Teamspeak Server online!');
-        } catch (TeamSpeak3_Exception $e) {
+        } catch (\Seat\Ts3\Exceptions\TeamspeakTestException $e) {
             return redirect()->back()
-            ->with('failure', 'No Teamspeak connection made.');
+            ->with('failure', 'No Teamspeak connection made.' . $e->getMessage());
         }
         
         

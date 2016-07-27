@@ -5,11 +5,7 @@
     "autoload":{
         "psr-4":{
             "Seat\\Ts3\\": "src/"
-        },
-        "files": [
-    	     "src/Helpers/TeamspeakFramework.php"
-	   ]
-        
+        }
     },
     "require": {
         "fkubis/teamspeak-php-framework": "dev-master@dev"
