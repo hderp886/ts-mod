@@ -32,7 +32,7 @@ Route::group([
     /**
     * Test Connection
     */
-    Route::post('/test/', [
+    Route::get('/test/', [
         'as' => 'ts3.admin.test',
         'uses' => 'Ts3Controller@testSettings'
     ]);

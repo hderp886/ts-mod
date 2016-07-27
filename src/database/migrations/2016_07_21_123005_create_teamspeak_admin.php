@@ -22,9 +22,11 @@ class CreateTeamspeakAdmin extends Migration
             $table->string('tsport');
             $table->string('tscport');
             $table->timestamps();
+            
+            $table->primary('id');
         });
         
-        $table->primary('id');
+        
     }
 
     /**
