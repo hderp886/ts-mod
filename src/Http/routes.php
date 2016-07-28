@@ -18,6 +18,7 @@ Route::group([
     */
     Route::get('/admin/', [
         'as' => 'ts3.admin',
+        'middleware' => 'bouncer:superuser',
         'uses' => 'Ts3Controller@getSettings'
     ]);
     
@@ -26,6 +27,7 @@ Route::group([
     */
     Route::post('/admin/', [
         'as' => 'ts3.admin.post',
+        'middleware' => 'bouncer:superuser',
         'uses' => 'Ts3Controller@postSettings'
     ]);
     
@@ -34,6 +36,7 @@ Route::group([
     */
     Route::get('/test/', [
         'as' => 'ts3.admin.test',
+        'middleware' => 'bouncer:superuser',
         'uses' => 'Ts3Controller@testSettings'
     ]);
     

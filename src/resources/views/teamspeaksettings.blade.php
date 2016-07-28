@@ -91,15 +91,15 @@
 
             <!-- Add Task Button -->
             <div class="form-group">
-                <div class="col-sm-offset-4 col-sm-6">
+                <div class="col-sm-offset-4 col-sm-4">
                     <button type="submit" class="btn btn-default">
                         <i class="fa fa-plus"></i> Update Settings
                     </button>
                 </div>
-                <div class="col-sm-offset-4 col-sm-6">
-                    <button type="button" href="/teamspeak/test" class="btn btn-default">
+                <div class="col-sm-4">
+                    <a type="button" href="/teamspeak/test" class="btn btn-default">
                         <i class="fa fa-plus"></i> Test Connection
-                    </button>
+                    </a>
                 </div>
             </div>
         </form>
@@ -110,6 +110,6 @@
 
 @section('right')
 
-right
+
 
 @stop

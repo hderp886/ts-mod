@@ -10,13 +10,19 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Artisan;
 use Seat\Ts3\Models\TeamspeakSetting;
 use Seat\Ts3\Helpers;
+use Seat\Services\Settings\Profile;
 
 class Ts3Controller extends Controller
 {
     public function getControls()
     {
-        //return view('controls');
-        return 'Hello World';
+        $tssettings = TeamspeakSetting::first();
+        
+        $tssettings->tspass = rawurlencode($tssettings->tspass);
+        
+        return view('teamspeak::teamspeak', compact('tssettings'));
+        
+        
     }
     
     public function getSettings()
@@ -52,13 +58,20 @@ class Ts3Controller extends Controller
         
         try {
             $tsserver = new \Seat\Ts3\Helpers\TeamSpeak3Adapater;
+            $outcome ='success';
+            $message ='Teamspeak Server online!';
+        } catch (\TeamSpeak3_Exception $e) {
+            echo 'Message: ' .$e->getMessage();
+        } finally {
+            if (!isset($outcome)) {
+                $outcome ='error';
+            }
+            if (!isset($message)) {
+                $message ='No Teamspeak connection made. Check your settings. Check the log file for details.';
+            }
             return redirect()->back()
-            ->with('success', 'Teamspeak Server online!');
-        } catch (TeamSpeak3_Exception $e) {
-            return redirect()->back()
-            ->with('failure', 'No Teamspeak connection made.');
+            ->with($outcome, $message);
         }
-        
         
     }
     
