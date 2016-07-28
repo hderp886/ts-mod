@@ -26,20 +26,6 @@ class CreateTeamspeakAdmin extends Migration
             $table->primary('id');
         });
         
-        Schema::create('teamspeakusers', function (Blueprint $table) {
-            $table->unsignedInteger('user_id');
-            $table->string('teamspeak_database_id');
-            $table->string('teamspeak_unique_id');
-            $table->timestamps();
-            
-            $table->primary('user_id');
-            
-            $table->foreign('user_id')
-                ->references('id')
-                ->on('users')
-                ->onDelete('cascade');
-        });
-        
         
     }
 
@@ -51,6 +37,5 @@ class CreateTeamspeakAdmin extends Migration
     public function down()
     {
         Schema::drop('teamspeaksettings');
-        Schema::drop('teamspeakusers');
     }
 }
