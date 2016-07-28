@@ -11,17 +11,33 @@ use Illuminate\Support\Facades\Artisan;
 use Seat\Ts3\Models\TeamspeakSetting;
 use Seat\Ts3\Helpers;
 use Seat\Services\Settings\Profile;
+use Pheal\Pheal;
 
 class Ts3Controller extends Controller
 {
     public function getControls()
     {
+        
         $tssettings = TeamspeakSetting::first();
         
         $tssettings->tspass = rawurlencode($tssettings->tspass);
         
         return view('teamspeak::teamspeak', compact('tssettings'));
         
+    }
+    
+    public function postControls()
+    {
+        
+        $tsserver = new \Seat\Ts3\Helpers\TeamSpeak3Adapater;
+        $pheal = new Pheal();
+        
+        // requests /server/ServerStatus.xml.aspx
+        $response = $pheal->serverScope->ServerStatus();
+        
+        
+        return redirect()->back()
+            ->with('message',   $response->onlinePlayers . 'Pheal connected');
         
     }
     

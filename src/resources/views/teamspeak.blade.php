@@ -11,10 +11,10 @@
     </div>
     <div class="panel-body">
         
-        @if (!count($tssettings))
+        @if (count($tssettings))
         <div class="col-sm-6">
-            <a type="button" class="btn btn-default">
-                <i class="fa fa-plug"></i> Connect to teamspeak automatically {{ setting('main_character_name') }}
+            <a type="button" class="btn btn-default" href="ts3server://{{ $tssettings->tshost }}?port={{ $tssettings->tscport }}&nickname={{ rawurlencode(setting('main_character_name')) }}&addbookmark=Panic%20Attack%20Teamspeak">
+                <i class="fa fa-plug"></i> Connect to teamspeak automatically 
             </a>
         </div>
         <div class="col-sm-6">

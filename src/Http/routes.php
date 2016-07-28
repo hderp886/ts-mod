@@ -14,6 +14,14 @@ Route::group([
     ]);
     
     /**
+    * Set permissions
+    */
+    Route::post('/', [
+        'as' => 'ts3.home.post',
+        'uses' => 'Ts3Controller@postControls'
+    ]);
+    
+    /**
     * View admin settings
     */
     Route::get('/admin/', [
