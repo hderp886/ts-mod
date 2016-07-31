@@ -11,7 +11,7 @@
     </div>
     <div class="panel-body">
         
-        if (count($tssettings))
+        @if (count($tssettings))
         <form action="{{ url('teamspeak') }}" method="POST" class="form-horizontal">
             {{ csrf_field() }}
 

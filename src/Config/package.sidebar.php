@@ -13,6 +13,12 @@ return [
                 'permission'     => 'Superuser',
                 'highlight_view' => 'research',
                 'route'          => 'ts3.admin'
+            ],
+            [
+                'name'           => 'Teamspeak Access',
+                'icon'           => 'fa-microphone',
+                'highlight_view' => 'research',
+                'route'          => 'ts3.home'
             ]
         ]
     ]

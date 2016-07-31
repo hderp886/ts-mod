@@ -175,6 +175,9 @@ class Ts3Controller extends Controller
         $tssettings->tspass = $request->input('tspass');
         $tssettings->tsport = $request->input('tsport');
         $tssettings->tscport = $request->input('tscport');
+        $tssettings->allianceid = $request->input('allianceid');
+        $tssettings->tsdivider = $request->input('tsdivider');
+        $tssettings->defaultgroup = $request->input('defaultgroup');
         
         $tssettings->save();
         return redirect()->back()
