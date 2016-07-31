@@ -29,8 +29,6 @@ class Ts3ServiceProvider extends ServiceProvider
         // Include this packages menu items
         $this->mergeConfigFrom(
             __DIR__ . '/Config/package.sidebar.php', 'package.sidebar');
-        $this->mergeConfigFrom(
-            __DIR__ . '/Config/package.configuration.menu.php', 'package.configuration.menu');
         
     }
     
