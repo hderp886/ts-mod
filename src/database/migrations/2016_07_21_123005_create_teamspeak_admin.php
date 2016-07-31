@@ -21,9 +21,11 @@ class CreateTeamspeakAdmin extends Migration
             $table->string('tspass');
             $table->string('tsport');
             $table->string('tscport');
+            $table->string('allianceid');
+            $table->string('tsdivider');
+            $table->string('defaultgroup');
             $table->timestamps();
             
-            $table->primary('id');
         });
         
         

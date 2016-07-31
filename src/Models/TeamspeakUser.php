@@ -3,6 +3,7 @@
 namespace Seat\Ts3\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Seat\Web\Models\User;
 
 class TeamspeakUser extends Model
 {

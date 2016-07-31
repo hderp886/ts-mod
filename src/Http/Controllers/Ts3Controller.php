@@ -12,6 +12,10 @@ use Seat\Ts3\Models\TeamspeakSetting;
 use Seat\Ts3\Helpers;
 use Seat\Services\Settings\Profile;
 use Pheal\Pheal;
+use TeamSpeak3\TeamSpeak3;
+use Seat\Web\Models\User;
+use Seat\Ts3\Models\TeamspeakUser;
+use Auth;
 
 class Ts3Controller extends Controller
 {
@@ -19,10 +23,11 @@ class Ts3Controller extends Controller
     {
         
         $tssettings = TeamspeakSetting::first();
+        $userId = Auth::id();
+        $tsuser = TeamspeakUser::where('user_id', $userId)
+            ->first();
         
-        $tssettings->tspass = rawurlencode($tssettings->tspass);
-        
-        return view('teamspeak::teamspeak', compact('tssettings'));
+        return view('teamspeak::teamspeak', compact('tssettings','tsuser'));
         
     }
     
@@ -32,12 +37,120 @@ class Ts3Controller extends Controller
         $tsserver = new \Seat\Ts3\Helpers\TeamSpeak3Adapater;
         $pheal = new Pheal();
         
-        // requests /server/ServerStatus.xml.aspx
-        $response = $pheal->serverScope->ServerStatus();
+        // Get char ID
+        $APIcharacterID = $pheal->eveScope->CharacterID(array("names" => setting('main_character_name')));
         
+        // Store char ID
+        foreach($APIcharacterID->characters  as $character) {
+				$characterID = $character->characterID;
+			}
         
-        return redirect()->back()
-            ->with('message',   $response->onlinePlayers . 'Pheal connected');
+        // Check Character exists
+        if ($characterID == 0) {
+            return redirect()->back()
+                ->with('error', 'Error: According to the CCP API server, the character does not exist.');
+            break;
+        }
+        
+        // Character exists, fetch details
+        $fetch = $pheal->eveScope->CharacterInfo(array('characterID' => $characterID));
+        
+        if ($fetch) {
+            $fetchCorporation = $fetch->corporation;
+            $fetchCorporationID = $fetch->corporationID;
+            $fetchAlliance = $fetch->alliance;
+            $fetchAllianceID = $fetch->allianceID;
+        } else {
+            return redirect()->back()
+                ->with('error', 'Could not fetch character details from the API. It may be down. Try again later.');
+            break;  
+        }
+        
+            
+        // Check character belongs to the alliance
+        $allianceID = $tssettings->allianceid;
+        if ($fetchAllianceID != $allianceID) {
+            return redirect()->back()
+                ->with('error', 'Error: This character is not a corp/alliance member. Set your main character to an active member.');
+            break;  
+        } 
+                
+        // Get corp ticker
+        $corp = $pheal->corpScope->CorporationSheet(array('corporationID' => $fetchCorporationID));
+        if ($corp) {
+            $corpTicker = $corp->ticker;
+        } else {
+           return redirect()->back()
+                ->with('error', 'Could not fetch corp ticker from the API. It may be down. Try again later.');
+            break;    
+        }
+        
+                
+        // Create the user's name
+        $spacer = $tssettings->tsdivider;
+        if ($spacer !== "") {
+            $nickname = $corpTicker." ".$spacer." ". setting('main_character_name');
+        } else {
+            $nickname = $corpTicker." ". setting('main_character_name');
+        }
+                
+        // Teamspeak 3 only allows nicknames of up to 30 characters
+        $nickname = substr($nickname, 0, 30);
+                
+        // Set alliance group
+        $usergroup = $tssettings->defaultgroup;
+        
+        // Attempt to find the user
+        $tsClient = $tsserver->ts3->clientGetByName($nickname);
+        
+        if ($tsClient) {
+            $tsDatabaseID = $tsClient->client_database_id;
+            $tsUniqueID = $tsClient->client_unique_identifier;
+        } else {
+           return redirect()->back()
+                ->with('error', 'Could not find you on the server, your nickname should be exactly '.$nickname.'.');
+            break;    
+        }
+        
+        // Set servergroup
+        try {
+            $tsClient->addServerGroup($usergroup);
+            $setServerGroup = "true";
+        } catch (\TeamSpeak3_Exception $e) {
+            //
+        } finally {
+            if (!isset($setServerGroup)) {
+                return redirect()->back()
+                    ->with('error', 'Could not add server group. Either the group doesn\'t exist, or you are already a member');
+                break; 
+            }
+        }
+        
+        // Save user to the database
+        $userId = Auth::id();
+        
+        $tsuser = TeamspeakUser::where('user_id', $userId)
+                ->first();
+        
+        if (!count($tsuser)) {
+                $tsuser = new TeamspeakUser;
+                $tsuser->user_id = $userId;
+            }
+        
+        $tsuser->teamspeak_database_id = $tsDatabaseID;
+        $tsuser->teamspeak_unique_id = $tsUniqueID;
+        
+        if ($tsuser->save()) {
+            return redirect()->back()
+                ->with('success', 'User saved');
+            break; 
+        } else {
+            $tsClient->remServerGroup($usergroup);
+            return redirect()->back()
+                ->with('error', 'Could not save the user to the database');
+            break; 
+        }
+        
         
     }
     

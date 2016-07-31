@@ -15,7 +15,10 @@ class TeamspeakSetting extends Model
         'tsuser',
         'tspass',
         'tsport',
-        'tscport'
+        'tscport',
+        'allianceid',
+        'tsdivider',
+        'defaultgroup'
     ];
     protected $primaryKey = 'id';
 }

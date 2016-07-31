@@ -4,7 +4,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTeamspeakUsers extends Migration
+class AddTeamspeakUsers extends Migration
 {
     /**
      * Run the migrations.

@@ -86,6 +86,44 @@
                     <input type="text" name="tscport" id="tscport" class="form-control" value="{{ $tssettings->tscport }}">
                     @endif
                 </div>
+            </div>
+                
+            <div class="form-group">
+                <label for="allianceid" class="col-sm-4 control-label">Main Alliance/Corp EVE ID</label>
+
+                <div class="col-sm-7">
+                    @if (!count($tssettings))
+                    <input type="text" name="allianceid" id="allianceid" class="form-control">
+                    @else
+                    <input type="text" name="allianceid" id="allianceid" class="form-control" value="{{ $tssettings->allianceid }}">
+                    @endif
+                </div>
+                
+            </div>
+            
+            <div class="form-group">
+                <label for="tsdivider" class="col-sm-4 control-label">Teamspeak Corp Ticker Divider</label>
+
+                <div class="col-sm-7">
+                    @if (!count($tssettings))
+                    <input type="text" name="tsdivider" id="tsdivider" class="form-control">
+                    @else
+                    <input type="text" name="tsdivider" id="tsdivider" class="form-control" value="{{ $tssettings->tsdivider }}">
+                    @endif
+                </div>
+                
+            </div>
+            
+            <div class="form-group">
+                <label for="defaultgroup" class="col-sm-4 control-label">Default Member TS Server Group ID</label>
+
+                <div class="col-sm-7">
+                    @if (!count($tssettings))
+                    <input type="text" name="defaultgroup" id="defaultgroup" class="form-control">
+                    @else
+                    <input type="text" name="defaultgroup" id="defaultgroup" class="form-control" value="{{ $tssettings->defaultgroup }}">
+                    @endif
+                </div>
                 
             </div>
 
