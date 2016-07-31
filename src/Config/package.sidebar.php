@@ -2,7 +2,6 @@
 
 
 return [
-    'teamspeak' => 
             [
                 'name'           => 'Teamspeak Access',
                 'icon'           => 'fa-microphone',
