@@ -27,7 +27,30 @@ class Ts3Controller extends Controller
         $tsuser = TeamspeakUser::where('user_id', $userId)
             ->first();
         
-        return view('teamspeak::teamspeak', compact('tssettings','tsuser'));
+        $pheal = new Pheal();
+        
+        // Get char ID
+        $APIcharacterID = $pheal->eveScope->CharacterID(array("names" => setting('main_character_name')));
+        
+        // Store char ID
+        foreach($APIcharacterID->characters  as $character) {
+				$characterID = $character->characterID;
+			}
+        $fetch = $pheal->eveScope->CharacterInfo(array('characterID' => $characterID));
+        $fetchCorporationID = $fetch->corporationID;
+        
+        $allianceID = $tssettings->allianceid;
+        $fetchAllianceID = $fetch->allianceID;
+        if ($fetchAllianceID != $allianceID) {
+            $allowed = '';
+        } else {
+            $allowed = '1';
+        }
+        
+        $corp = $pheal->corpScope->CorporationSheet(array('corporationID' => $fetchCorporationID));
+        $corpTicker = $corp->ticker;
+        
+        return view('teamspeak::teamspeak', compact('tssettings','tsuser','corpTicker', 'allowed'));
         
     }
     
@@ -35,6 +58,7 @@ class Ts3Controller extends Controller
     {
         
         $tsserver = new \Seat\Ts3\Helpers\TeamSpeak3Adapater;
+        $tssettings = TeamspeakSetting::first();
         $pheal = new Pheal();
         
         // Get char ID
