@@ -89,7 +89,7 @@
             </div>
                 
             <div class="form-group">
-                <label for="allianceid" class="col-sm-4 control-label">Main Alliance/Corp EVE ID</label>
+                <label for="allianceid" class="col-sm-4 control-label">Alliance/Corp EVE IDs (Separate by comma)</label>
 
                 <div class="col-sm-7">
                     @if (!count($tssettings))

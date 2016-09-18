@@ -38,14 +38,19 @@ class Ts3Controller extends Controller
 			}
         $fetch = $pheal->eveScope->CharacterInfo(array('characterID' => $characterID));
         $fetchCorporationID = $fetch->corporationID;
-        
         $allianceID = $tssettings->allianceid;
         $fetchAllianceID = $fetch->allianceID;
-        if ($fetchAllianceID != $allianceID) {
-            $allowed = '';
-        } else {
-            $allowed = '1';
+        
+        $allianceArr=explode(",",allianceID);
+        $allowed = '';
+        
+        foreach ($allianceArr as $allianceArrCode) {
+            if ($fetchCorporationID == $allianceArrCode or $fetchAllianceID == $allianceArrCode) {
+                $allowed = '1';
+            }
+            
         }
+        
         
         $corp = $pheal->corpScope->CorporationSheet(array('corporationID' => $fetchCorporationID));
         $corpTicker = $corp->ticker;
@@ -93,7 +98,19 @@ class Ts3Controller extends Controller
             
         // Check character belongs to the alliance
         $allianceID = $tssettings->allianceid;
-        if ($fetchAllianceID != $allianceID) {
+        
+        $allianceArr=explode(",",allianceID);
+        $allowed = '';
+        
+        foreach ($allianceArr as $allianceArrCode) {
+            if ($fetchCorporationID == $allianceArrCode or $fetchAllianceID == $allianceArrCode) {
+                $allowed = '1';
+            }
+            
+        }
+        
+        
+        if ($allowed != '1') {
             return redirect()->back()
                 ->with('error', 'Error: This character is not a corp/alliance member. Set your main character to an active member.');
             break;  
