@@ -41,7 +41,7 @@ class Ts3Controller extends Controller
         $allianceID = $tssettings->allianceid;
         $fetchAllianceID = $fetch->allianceID;
         
-        $allianceArr=explode(",",allianceID);
+        $allianceArr=explode(",",$allianceID);
         $allowed = '';
         
         foreach ($allianceArr as $allianceArrCode) {
@@ -99,7 +99,7 @@ class Ts3Controller extends Controller
         // Check character belongs to the alliance
         $allianceID = $tssettings->allianceid;
         
-        $allianceArr=explode(",",allianceID);
+        $allianceArr=explode(",",$allianceID);
         $allowed = '';
         
         foreach ($allianceArr as $allianceArrCode) {
