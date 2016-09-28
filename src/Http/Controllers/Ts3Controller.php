@@ -216,6 +216,11 @@ class Ts3Controller extends Controller
         $tssettings->allianceid = $request->input('allianceid');
         $tssettings->tsdivider = $request->input('tsdivider');
         $tssettings->defaultgroup = $request->input('defaultgroup');
+        $tssettings->noodlTicker = $request->input('noodlTicker');
+        $tssettings->noodlCID = $request->input('noodlCID');
+        $tssettings->noodlCGID = $request->input('noodlCGID');
+        $tssettings->s4uceCID = $request->input('s4uceCID');
+        $tssettings->s4uceCGID = $request->input('s4uceCGID');
         
         $tssettings->save();
         return redirect()->back()
@@ -225,6 +230,8 @@ class Ts3Controller extends Controller
     
     public function testSettings()
     {
+        
+   
         
         try {
             $tsserver = new \Seat\Ts3\Helpers\TeamSpeak3Adapater;
@@ -252,10 +259,10 @@ class Ts3Controller extends Controller
         $clients = $tsserver->serverGroupClientList($usergroup);
         foreach ($clients as $client) {
             $corpTicker = substr($client["client_nickname"], 0, strpos($client["client_nickname"], " |"));
-            if($corpTicker == $tssettings->$noodlTicker) {//"N0ODL") {
-                $client->setChannelGroup($tssettings->$noodlCID, $tssettings->$noodlCGID);
+            if($corpTicker == $tssettings->noodlTicker) {//"N0ODL") {
+                $client->setChannelGroup($tssettings->noodlCID, $tssettings->noodlCGID);
             } else {
-                $client->setChannelGroup($tssettings->$s4uceCID, $tssettings->$s4uceCGID);
+                $client->setChannelGroup($tssettings->s4uceCID, $tssettings->s4uceCGID);
             }
         }
     }

@@ -18,7 +18,12 @@ class TeamspeakSetting extends Model
         'tscport',
         'allianceid',
         'tsdivider',
-        'defaultgroup'
+        'defaultgroup',
+        'noodlTicker',
+        'noodlCID',
+        'noodlCGID',
+        's4uceCID',
+        's4uceCGID'
     ];
     protected $primaryKey = 'id';
 }

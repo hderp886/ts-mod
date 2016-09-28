@@ -127,6 +127,71 @@
                 
             </div>
 
+            <div class="form-group">
+                <label for="noodlTicker" class="col-sm-4 control-label">N0ODL Corp Ticker</label>
+
+                <div class="col-sm-7">
+                    @if (!count($tssettings))
+                    <input type="text" name="noodlTicker" id="noodlTicker" class="form-control">
+                    @else
+                    <input type="text" name="noodlTicker" id="noodlTicker" class="form-control" value="{{ $tssettings->noodlTicker }}">
+                    @endif
+                </div>
+                
+            </div>
+            
+            <div class="form-group">
+                <label for="noodlCID" class="col-sm-4 control-label">N0ODL Channel ID</label>
+
+                <div class="col-sm-7">
+                    @if (!count($tssettings))
+                    <input type="text" name="noodlCID" id="noodlCID" class="form-control">
+                    @else
+                    <input type="text" name="noodlCID" id="noodlCID" class="form-control" value="{{ $tssettings->noodlCID }}">
+                    @endif
+                </div>
+                
+            </div>
+            
+            <div class="form-group">
+                <label for="noodlCGID" class="col-sm-4 control-label">N0ODL Channel Group ID</label>
+
+                <div class="col-sm-7">
+                    @if (!count($tssettings))
+                    <input type="text" name="noodlCGID" id="noodlCGID" class="form-control">
+                    @else
+                    <input type="text" name="noodlCGID" id="noodlCGID" class="form-control" value="{{ $tssettings->noodlCGID }}">
+                    @endif
+                </div>
+                
+            </div>
+            
+            <div class="form-group">
+                <label for="s4uceCID" class="col-sm-4 control-label">S4UCE Channel ID</label>
+
+                <div class="col-sm-7">
+                    @if (!count($tssettings))
+                    <input type="text" name="s4uceCID" id="s4uceCID" class="form-control">
+                    @else
+                    <input type="text" name="s4uceCID" id="s4uceCID" class="form-control" value="{{ $tssettings->s4uceCID }}">
+                    @endif
+                </div>
+                
+            </div>
+            
+            <div class="form-group">
+                <label for="s4uceCGID" class="col-sm-4 control-label">S4UCE Channel Group ID</label>
+
+                <div class="col-sm-7">
+                    @if (!count($tssettings))
+                    <input type="text" name="s4uceCGID" id="s4uceCGID" class="form-control">
+                    @else
+                    <input type="text" name="s4uceCGID" id="s4uceCGID" class="form-control" value="{{ $tssettings->s4uceCGID }}">
+                    @endif
+                </div>
+                
+            </div>
+            
             <!-- Add Task Button -->
             <div class="form-group">
                 <div class="col-sm-offset-4 col-sm-4">
