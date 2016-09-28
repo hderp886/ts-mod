@@ -78,7 +78,6 @@ class Ts3Controller extends Controller
         if ($characterID == 0) {
             return redirect()->back()
                 ->with('error', 'Error: According to the CCP API server, the character does not exist.');
-            break;
         }
         
         // Character exists, fetch details
@@ -92,7 +91,6 @@ class Ts3Controller extends Controller
         } else {
             return redirect()->back()
                 ->with('error', 'Could not fetch character details from the API. It may be down. Try again later.');
-            break;  
         }
         
             
@@ -113,7 +111,6 @@ class Ts3Controller extends Controller
         if ($allowed != '1') {
             return redirect()->back()
                 ->with('error', 'Error: This character is not a corp/alliance member. Set your main character to an active member.');
-            break;  
         } 
                 
         // Get corp ticker
@@ -123,7 +120,6 @@ class Ts3Controller extends Controller
         } else {
            return redirect()->back()
                 ->with('error', 'Could not fetch corp ticker from the API. It may be down. Try again later.');
-            break;    
         }
         
                 
@@ -150,20 +146,23 @@ class Ts3Controller extends Controller
         } else {
            return redirect()->back()
                 ->with('error', 'Could not find you on the server, your nickname should be exactly '.$nickname.'.');
-            break;    
         }
         
         // Set servergroup
         try {
             $tsClient->addServerGroup($usergroup);
             $setServerGroup = "true";
+            if($corpTicker == $tssettings->$noodlTicker) {//"N0ODL") {
+                $client->setChannelGroup($tssettings->$noodlCID, $tssettings->$noodlCGID);
+            } else {
+                $client->setChannelGroup($tssettings->$s4uceCID, $tssettings->$s4uceCGID);
+            }
         } catch (\TeamSpeak3_Exception $e) {
             //
         } finally {
             if (!isset($setServerGroup)) {
                 return redirect()->back()
                     ->with('error', 'Could not add server group. Either the group doesn\'t exist, or you are already a member');
-                break; 
             }
         }
         
@@ -184,12 +183,10 @@ class Ts3Controller extends Controller
         if ($tsuser->save()) {
             return redirect()->back()
                 ->with('success', 'User saved');
-            break; 
         } else {
             $tsClient->remServerGroup($usergroup);
             return redirect()->back()
                 ->with('error', 'Could not save the user to the database');
-            break; 
         }
         
         
@@ -246,6 +243,21 @@ class Ts3Controller extends Controller
             ->with($outcome, $message);
         }
         
+    }
+
+    public function applyAllChannelGroups() {
+        $tsserver = new \Seat\Ts3\Helpers\TeamSpeak3Adapater;
+        $tssettings = TeamspeakSetting::first();
+        $usergroup = $tssettings->defaultgroup;
+        $clients = $tsserver->serverGroupClientList($usergroup);
+        foreach ($clients as $client) {
+            $corpTicker = substr($client["client_nickname"], 0, strpos($client["client_nickname"], " |"));
+            if($corpTicker == $tssettings->$noodlTicker) {//"N0ODL") {
+                $client->setChannelGroup($tssettings->$noodlCID, $tssettings->$noodlCGID);
+            } else {
+                $client->setChannelGroup($tssettings->$s4uceCID, $tssettings->$s4uceCGID);
+            }
+        }
     }
     
 }
